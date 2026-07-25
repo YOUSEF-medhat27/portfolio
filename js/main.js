@@ -58,3 +58,31 @@ if (mobileMenuBtn && navLinks) {
     });
   });
 }
+
+// Scrollspy - تفعيل اللينك المناسب في الناف بار حسب مكان السكرول
+const sections = document.querySelectorAll('main section[id], #hero-section');
+const navLinkItems = document.querySelectorAll('.nav-links a[href^="#"]');
+
+const scrollSpyObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+
+        navLinkItems.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  },
+  {
+    // يعتبر السكشن "نشط" لما يوصل لمنتصف الشاشة تقريبًا
+    rootMargin: '-40% 0px -55% 0px',
+    threshold: 0
+  }
+);
+
+sections.forEach(section => scrollSpyObserver.observe(section));
