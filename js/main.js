@@ -86,3 +86,28 @@ const scrollSpyObserver = new IntersectionObserver(
 );
 
 sections.forEach(section => scrollSpyObserver.observe(section));
+
+
+// Dark Mode Toggle
+const themeToggleBtn = document.getElementById('theme-toggle-button');
+const htmlElement = document.documentElement;
+
+// عند تحميل الصفحة: شوف هل فيه اختيار محفوظ قبل كده
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  htmlElement.classList.remove('dark');
+  themeToggleBtn?.setAttribute('aria-pressed', 'false');
+} else {
+  // لو مفيش حاجة محفوظة، الوضع الافتراضي هو Dark (زي ما هو متظبط في الـ HTML)
+  htmlElement.classList.add('dark');
+  themeToggleBtn?.setAttribute('aria-pressed', 'true');
+}
+
+// عند الضغط على الزرار
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = htmlElement.classList.toggle('dark');
+    themeToggleBtn.setAttribute('aria-pressed', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+}
