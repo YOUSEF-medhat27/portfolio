@@ -111,3 +111,72 @@ if (themeToggleBtn) {
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 }
+
+
+// Testimonials Carousel
+const carousel = document.getElementById('testimonials-carousel');
+const nextBtn = document.getElementById('next-testimonial');
+const prevBtn = document.getElementById('prev-testimonial');
+const indicators = document.querySelectorAll('.carousel-indicator');
+const totalCards = document.querySelectorAll('.testimonial-card').length;
+
+let currentIndex = 0;
+
+// يحدد كام كارت ظاهر في المرة حسب حجم الشاشة
+function getVisibleCards() {
+  if (window.innerWidth >= 1024) return 3;      // lg
+  if (window.innerWidth >= 640) return 2;       // sm
+  return 1;                                     // موبايل
+}
+
+function updateCarousel() {
+  const visibleCards = getVisibleCards();
+  const maxIndex = Math.max(0, totalCards - visibleCards);
+
+  // منع الاندكس يعدي الحدود
+  if (currentIndex > maxIndex) currentIndex = maxIndex;
+  if (currentIndex < 0) currentIndex = 0;
+
+  const cardWidthPercent = 100 / visibleCards;
+  carousel.style.transform = `translateX(${currentIndex * cardWidthPercent}%)`;
+
+  // تحديث شكل المؤشرات (النقط)
+  indicators.forEach((dot, i) => {
+    if (i === currentIndex) {
+      dot.classList.add('bg-accent');
+      dot.classList.remove('bg-slate-400', 'dark:bg-slate-600');
+      dot.setAttribute('aria-selected', 'true');
+    } else {
+      dot.classList.remove('bg-accent');
+      dot.classList.add('bg-slate-400', 'dark:bg-slate-600');
+      dot.setAttribute('aria-selected', 'false');
+    }
+  });
+}
+
+nextBtn?.addEventListener('click', () => {
+  const visibleCards = getVisibleCards();
+  const maxIndex = Math.max(0, totalCards - visibleCards);
+  currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+  updateCarousel();
+});
+
+prevBtn?.addEventListener('click', () => {
+  const visibleCards = getVisibleCards();
+  const maxIndex = Math.max(0, totalCards - visibleCards);
+  currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+  updateCarousel();
+});
+
+indicators.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    currentIndex = i;
+    updateCarousel();
+  });
+});
+
+// إعادة الحساب لما حجم الشاشة يتغير
+window.addEventListener('resize', updateCarousel);
+
+// تشغيل أولي
+updateCarousel(); 
