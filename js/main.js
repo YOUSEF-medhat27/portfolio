@@ -191,3 +191,15 @@ gear.addEventListener("click", function () {
     slider.classList.toggle("show");
     gear.classList.toggle("move");
 });
+
+var coltwo = document.querySelector(".colourtwo")
+var colthree = document.querySelector(".colourthree")
+var colfour = document.querySelector(".colourfour")
+var colfive = document.querySelector(".colourfive")
+var colsix = document.querySelector(".coloursix")
+var faCode = document.querySelector(".fa-code");
+
+coltwo.addEventListener("click", function () {
+    faCode.style.backgroundImage =
+        "linear-gradient(135deg, rgb(236, 72, 153), rgb(249, 115, 22))";
+});
