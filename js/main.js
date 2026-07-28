@@ -184,10 +184,10 @@ updateCarousel();
 
 // ************************************
 
-
-var gear = document.querySelector("#settings-toggle")
-var slider = document.querySelector(".slider")
+var gear = document.querySelector("#settings-toggle");
+var slider = document.querySelector(".slider");
 
 gear.addEventListener("click", function () {
     slider.classList.toggle("show");
+    gear.classList.toggle("move");
 });
