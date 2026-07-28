@@ -184,22 +184,7 @@ updateCarousel();
 
 // ************************************
 
-// var gear = document.querySelector("#settings-toggle");
-// var slider = document.querySelector(".slider");
 
-// gear.addEventListener("click", function () {
-//   slider.classList.toggle("show");
-//   gear.classList.toggle("move");
-// });
-
-
-// var colone = document.querySelector(".colourone")
-// var coltwo = document.querySelector(".colourtwo")
-// var colthree = document.querySelector(".colourthree")
-// var colfour = document.querySelector(".colourfour")
-// var colfive = document.querySelector(".colourfive")
-// var colsix = document.querySelector(".coloursix")
-// var hambozo = document.querySelector(".fa-code");
 
 
 // ============================================
