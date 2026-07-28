@@ -180,3 +180,14 @@ window.addEventListener('resize', updateCarousel);
 
 // تشغيل أولي
 updateCarousel(); 
+
+
+// ************************************
+
+
+var gear = document.querySelector("#settings-toggle")
+var slider = document.querySelector(".slider")
+
+gear.addEventListener("click", function () {
+    slider.classList.toggle("show");
+});
