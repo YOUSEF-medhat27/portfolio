@@ -203,14 +203,18 @@ var hambozo = document.querySelector(".fa-code");
 
 colone.addEventListener("click", function () {
     hambozo.style.backgroundImage ="linear-gradient(135deg, rgb(99, 102, 241), rgb(139, 92, 246))";
-    
+    hambozo.style. background-color = "linear-gradient(135deg, rgb(99, 102, 241), rgb(139, 92, 246))"
 
 });
 
 coltwo.addEventListener("click", function () {
     hambozo.style.backgroundImage ="linear-gradient(135deg, rgb(236, 72, 153), rgb(249, 115, 22)";
+    hambozo.style. background-color = "linear-gradient(135deg, rgb(236, 72, 153), rgb(249, 115, 22)"
+
 });
 
 colthree.addEventListener("click", function () {
     hambozo.style.backgroundImage ="linear-gradient(135deg, rgb(16, 185, 129), rgb(5, 150, 105))";
+    hambozo.style.background-color ="linear-gradient(135deg, rgb(16, 185, 129), rgb(5, 150, 105))";
+
 });
