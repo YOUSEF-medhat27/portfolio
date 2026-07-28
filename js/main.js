@@ -192,14 +192,18 @@ gear.addEventListener("click", function () {
     gear.classList.toggle("move");
 });
 
+
+var colone = document.querySelector(".colourone")
 var coltwo = document.querySelector(".colourtwo")
 var colthree = document.querySelector(".colourthree")
 var colfour = document.querySelector(".colourfour")
 var colfive = document.querySelector(".colourfive")
 var colsix = document.querySelector(".coloursix")
-var faCode = document.querySelector(".fa-code");
+var hambozo = document.querySelector(".fa-code");
 
-coltwo.addEventListener("click", function () {
-    faCode.style.backgroundImage =
-        "linear-gradient(135deg, rgb(236, 72, 153), rgb(249, 115, 22))";
+colone.addEventListener("click", function () {
+    hambozo.style.backgroundImage ="linear-gradient(135deg, rgb(99, 102, 241), rgb(139, 92, 246))";
+    
+
 });
+
