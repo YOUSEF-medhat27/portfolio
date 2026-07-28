@@ -184,37 +184,145 @@ updateCarousel();
 
 // ************************************
 
-var gear = document.querySelector("#settings-toggle");
-var slider = document.querySelector(".slider");
+// var gear = document.querySelector("#settings-toggle");
+// var slider = document.querySelector(".slider");
 
-gear.addEventListener("click", function () {
-  slider.classList.toggle("show");
-  gear.classList.toggle("move");
+// gear.addEventListener("click", function () {
+//   slider.classList.toggle("show");
+//   gear.classList.toggle("move");
+// });
+
+
+// var colone = document.querySelector(".colourone")
+// var coltwo = document.querySelector(".colourtwo")
+// var colthree = document.querySelector(".colourthree")
+// var colfour = document.querySelector(".colourfour")
+// var colfive = document.querySelector(".colourfive")
+// var colsix = document.querySelector(".coloursix")
+// var hambozo = document.querySelector(".fa-code");
+
+
+// ============================================
+// Settings Sidebar (تخصيص المظهر)
+// ============================================
+
+const settingsToggle = document.getElementById('settings-toggle');
+const settingsSidebar = document.getElementById('settings-sidebar');
+const closeSettings = document.getElementById('close-settings');
+const fontOptions = document.querySelectorAll('.font-option');
+const colorsGrid = document.getElementById('theme-colors-grid');
+const resetBtn = document.getElementById('reset-settings');
+
+// الألوان المتاحة (بتتطابق مع الألوان اللي كانت في صورتك سابقًا)
+const themeColors = [
+  { name: 'بنفسجي', primary: '#6366f1', secondary: '#8b5cf6' },
+  { name: 'وردي',   primary: '#ec4899', secondary: '#f97316' },
+  { name: 'أخضر',   primary: '#10b981', secondary: '#059669' },
+  { name: 'أزرق',   primary: '#3b82f6', secondary: '#06b6d4' },
+  { name: 'أحمر',   primary: '#ef4444', secondary: '#f43f5e' },
+  { name: 'برتقالي', primary: '#f59e0b', secondary: '#ea580c' },
+];
+
+const DEFAULT_FONT = 'tajawal';
+const DEFAULT_COLOR_INDEX = 0;
+
+// ---------- فتح/قفل السايد بار ----------
+function openSidebar() {
+  settingsSidebar.classList.remove('translate-x-full');
+  settingsSidebar.setAttribute('aria-hidden', 'false');
+  settingsToggle.setAttribute('aria-expanded', 'true');
+}
+
+function closeSidebar() {
+  settingsSidebar.classList.add('translate-x-full');
+  settingsSidebar.setAttribute('aria-hidden', 'true');
+  settingsToggle.setAttribute('aria-expanded', 'false');
+}
+
+settingsToggle?.addEventListener('click', () => {
+  const isOpen = !settingsSidebar.classList.contains('translate-x-full');
+  isOpen ? closeSidebar() : openSidebar();
 });
 
+closeSettings?.addEventListener('click', closeSidebar);
 
-var colone = document.querySelector(".colourone")
-var coltwo = document.querySelector(".colourtwo")
-var colthree = document.querySelector(".colourthree")
-var colfour = document.querySelector(".colourfour")
-var colfive = document.querySelector(".colourfive")
-var colsix = document.querySelector(".coloursix")
-var hambozo = document.querySelector(".fa-code");
-
-colone.addEventListener("click", function () {
-  hambozo.style.backgroundImage = "linear-gradient(135deg, rgb(99, 102, 241), rgb(139, 92, 246))";
-  hambozo.style.background - color = "linear-gradient(135deg, rgb(99, 102, 241), rgb(139, 92, 246))"
-
+// قفل السايد بار لو دوس برة (اختياري بس مفيد)
+document.addEventListener('click', (e) => {
+  if (
+    !settingsSidebar.classList.contains('translate-x-full') &&
+    !settingsSidebar.contains(e.target) &&
+    !settingsToggle.contains(e.target)
+  ) {
+    closeSidebar();
+  }
 });
 
-coltwo.addEventListener("click", function () {
-  hambozo.style.backgroundImage = "linear-gradient(135deg, rgb(236, 72, 153), rgb(249, 115, 22)";
-  hambozo.style.background - color = "linear-gradient(135deg, rgb(236, 72, 153), rgb(249, 115, 22)"
+// ---------- اختيار الخط ----------
+function applyFont(fontName) {
+  document.body.classList.remove('font-alexandria', 'font-tajawal', 'font-cairo');
+  document.body.classList.add(`font-${fontName}`);
 
+  fontOptions.forEach(btn => {
+    const isSelected = btn.getAttribute('data-font') === fontName;
+    btn.classList.toggle('active', isSelected);
+    btn.setAttribute('aria-checked', isSelected);
+  });
+
+  localStorage.setItem('selectedFont', fontName);
+}
+
+fontOptions.forEach(btn => {
+  btn.addEventListener('click', () => {
+    applyFont(btn.getAttribute('data-font'));
+  });
 });
 
-colthree.addEventListener("click", function () {
-  hambozo.style.backgroundImage = "linear-gradient(135deg, rgb(16, 185, 129), rgb(5, 150, 105))";
-  hambozo.style.background - color = "linear-gradient(135deg, rgb(16, 185, 129), rgb(5, 150, 105))";
+// ---------- ألوان الثيم ----------
+function applyColor(color, index) {
+  document.documentElement.style.setProperty('--color-primary', color.primary);
+  document.documentElement.style.setProperty('--color-secondary', color.secondary);
 
+  document.querySelectorAll('.color-swatch').forEach((swatch, i) => {
+    swatch.classList.toggle('ring-2', i === index);
+    swatch.classList.toggle('ring-white', i === index);
+    swatch.classList.toggle('ring-offset-2', i === index);
+    swatch.classList.toggle('ring-offset-slate-900', i === index);
+  });
+
+  localStorage.setItem('selectedColorIndex', index);
+}
+
+function buildColorSwatches() {
+  colorsGrid.innerHTML = '';
+  themeColors.forEach((color, index) => {
+    const swatch = document.createElement('button');
+    swatch.type = 'button';
+    swatch.className = 'color-swatch w-full aspect-square rounded-full transition-all duration-300 hover:scale-110 cursor-pointer';
+    swatch.style.background = `linear-gradient(135deg, ${color.primary}, ${color.secondary})`;
+    swatch.setAttribute('aria-label', `لون ${color.name}`);
+    swatch.addEventListener('click', () => applyColor(color, index));
+    colorsGrid.appendChild(swatch);
+  });
+}
+
+// ---------- إعادة الضبط ----------
+resetBtn?.addEventListener('click', () => {
+  applyFont(DEFAULT_FONT);
+  applyColor(themeColors[DEFAULT_COLOR_INDEX], DEFAULT_COLOR_INDEX);
+  localStorage.removeItem('selectedFont');
+  localStorage.removeItem('selectedColorIndex');
 });
+
+// ---------- تحميل الإعدادات المحفوظة عند فتح الصفحة ----------
+function initSettings() {
+  buildColorSwatches();
+
+  const savedFont = localStorage.getItem('selectedFont') || DEFAULT_FONT;
+  applyFont(savedFont);
+
+  const savedColorIndex = parseInt(localStorage.getItem('selectedColorIndex')) || DEFAULT_COLOR_INDEX;
+  applyColor(themeColors[savedColorIndex], savedColorIndex);
+}
+
+initSettings();
+
