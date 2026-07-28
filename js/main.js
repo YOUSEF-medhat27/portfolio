@@ -206,4 +206,9 @@ colone.addEventListener("click", function () {
     
 
 });
+coltwo.addEventListener("click", function () {
+    hambozo.style.backgroundImage ="linear-gradient(135deg, rgb(236, 72, 153), rgb(249, 115, 22)";
+    
+
+});
 
