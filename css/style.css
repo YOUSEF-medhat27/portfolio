@@ -58,37 +58,6 @@ a {
 }
 .fa-sliders {
   color: #6366f1;
-  padding-left: 10px;
-}
-.specification{
-    color: white;
-    padding: 0px;
-    padding-right: 10px;
-}
-.layer{
-    width: 25%;
-}
-.container{
-    display: flex;
-    flex-direction:  column;
-    height: 100vh;
-}
-.top{
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.top-inner{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-.type{
-    font-weight: 900;
-    padding: 0px;
-    margin: 0px;
-    padding-right: 10px;
 }
 .layer,
 .card {
@@ -99,32 +68,11 @@ a {
   padding-bottom: 20px;
  flex-shrink: 0;
 }
-.medium{
-    padding-top: 10px;
-}
-.medium-container{
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-.medium-cards{
-    padding: 10px 0px;
-}
 .medium-title {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    color: white;
   color: oklch(0.704 0.04 256.788);
-}
-.coltext{
-    font-weight: 900;
-    padding: 0px;
-    margin: 0px;
-    padding-right: 10px;
 }
 .card {
   margin: auto;
-  color: white;
   border: 1px solid oklch(0.372 0.044 257.287);
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
@@ -136,26 +84,12 @@ a {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  padding: 10px;
-  margin: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
 }
 .card.active {
   border: 1px solid #6366f1;
 }
 .card.active h4 {
   color: #6366f1;
-}
-.text-dark-emphasis{
-    color: oklch(0.704 0.04 256.788)
-;
-}
-.d-none{
-    display: none;
 }
 .mark {
   background-color: #0e172b;
@@ -178,10 +112,7 @@ a {
 .card:hover .mark {
   background-color: #152033;
 }
-.medium-two{
-    padding: 0px 10px;
-    padding-top: 10px;
-}
+
 .slider {
     position: fixed;
     top: 0;
@@ -195,13 +126,6 @@ a {
 .slider.show {
     right: 0;
     z-index: 999;
-}
-.colours{
-    padding: 0px 10px;
-    padding-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .colourone,.colourtwo,.colourthree,.colourfour,.colourfive,.coloursix {
   width: 60px;
@@ -242,9 +166,6 @@ a {
     -o-transform: scale(1.2);
 }
 .btn-reset {
-
-    padding: 10px 0px;
-    align-content: center;
   background-color: #1d293d;
   border: none;
   border-radius: 10px;
@@ -254,15 +175,9 @@ a {
    flex-shrink: 0;
    color: oklch(0.704 0.04 256.788);
 }
-.btn-reset{
-    width: 100%;
-}
 .btn-reset:hover {
   background-color: red;
 }
 .slider.show {
     right: 0;
-}
-.hamada{
-    margin: 10px;
 }
