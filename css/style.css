@@ -274,7 +274,39 @@
 
 
 
+.slider{
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100vh;
+    transition: .4s;
+}
 
+.settings-layer{
+    height: 100%;
+}
+
+.settings-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.settings-top{
+    flex-shrink: 0;
+    border-bottom: 1px solid #334155;
+}
+
+.settings-section{
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.reset-btn{
+    flex-shrink: 0;
+}
 
 
 
