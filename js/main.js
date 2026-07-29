@@ -198,7 +198,7 @@ const fontOptions = document.querySelectorAll('.font-option');
 const colorsGrid = document.getElementById('theme-colors-grid');
 const resetBtn = document.getElementById('reset-settings');
 
-// الألوان المتاحة (بتتطابق مع الألوان اللي كانت في صورتك سابقًا)
+// الألوان المتاحة 
 const themeColors = [
   { name: 'بنفسجي', primary: '#6366f1', secondary: '#8b5cf6' },
   { name: 'وردي',   primary: '#ec4899', secondary: '#f97316' },
