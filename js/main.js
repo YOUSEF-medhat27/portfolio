@@ -231,16 +231,7 @@ settingsToggle?.addEventListener('click', () => {
 
 closeSettings?.addEventListener('click', closeSidebar);
 
-// قفل السايد بار لو دوس برة (اختياري بس مفيد)
-document.addEventListener('click', (e) => {
-  if (
-    !settingsSidebar.classList.contains('translate-x-full') &&
-    !settingsSidebar.contains(e.target) &&
-    !settingsToggle.contains(e.target)
-  ) {
-    closeSidebar();
-  }
-});
+
 
 // ---------- اختيار الخط ----------
 function applyFont(fontName) {
