@@ -259,10 +259,8 @@ function applyColor(color, index) {
   document.documentElement.style.setProperty('--color-secondary', color.secondary);
 
   document.querySelectorAll('.color-swatch').forEach((swatch, i) => {
-    swatch.classList.toggle('ring-2', i === index);
-    swatch.classList.toggle('ring-white', i === index);
-    swatch.classList.toggle('ring-offset-2', i === index);
-    swatch.classList.toggle('ring-offset-slate-900', i === index);
+    swatch.style.border = i === index ? '2px solid white' : '2px solid transparent';
+    swatch.style.transform = i === index ? 'scale(1.1)' : 'scale(1)';
   });
 
   localStorage.setItem('selectedColorIndex', index);
@@ -273,8 +271,14 @@ function buildColorSwatches() {
   themeColors.forEach((color, index) => {
     const swatch = document.createElement('button');
     swatch.type = 'button';
-    swatch.className = 'color-swatch w-full aspect-square rounded-full transition-all duration-300 hover:scale-110 cursor-pointer';
-    swatch.style.background = `linear-gradient(135deg, ${color.primary}, ${color.secondary})`;
+    swatch.className = 'color-swatch cursor-pointer transition-all duration-300';
+    swatch.style.cssText = `
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: linear-gradient(135deg, ${color.primary}, ${color.secondary});
+      border: 2px solid transparent;
+    `;
     swatch.setAttribute('aria-label', `لون ${color.name}`);
     swatch.addEventListener('click', () => applyColor(color, index));
     colorsGrid.appendChild(swatch);
